@@ -51,10 +51,10 @@ public class TesteBuscaProfessor {
     @Test
     public void buscaProfessorNaoCadastradoNoServidorRemoto() {
         Mockito.when(service.busca("Júlio Cesar")).thenReturn(ProfessorConst.NAO_ENCONTRADO);
-        Professor júlioCesar = buscaProfessor.buscaProfessor("Júlio Cesar");
-        assertEquals("Não Encontrado", júlioCesar.getNomeDoProfessor());
-        assertEquals("Não Encontrado", júlioCesar.getHorarioDeAtendimento());
-        assertEquals("Não Encontrado", júlioCesar.getPeriodo());
+        Professor julioCesar = buscaProfessor.buscaProfessor("Júlio Cesar");
+        assertEquals("Não Encontrado", julioCesar.getNomeDoProfessor());
+        assertEquals("Não Encontrado", julioCesar.getHorarioDeAtendimento());
+        assertEquals("Não Encontrado", julioCesar.getPeriodo());
     }
 
     @Test
