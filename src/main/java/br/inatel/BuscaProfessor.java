@@ -10,7 +10,7 @@ public class BuscaProfessor {
         this.professorService = professorService;
     }
 
-    public Professor buscaProfessor(String nome) throws InvalidPersonNameException {
+    public Professor buscaProfessor(String nome) {
         String iniJson = professorService.busca(nome);
         JsonObject jsonObject = JsonParser.parseString(iniJson).getAsJsonObject();
 

@@ -22,7 +22,7 @@ public class TesteBuscaProfessor {
     }
 
     @Test
-    public void buscaProfessorJoaquimSilva() throws InvalidPersonNameException {
+    public void buscaProfessorJoaquimSilva() {
         Mockito.when(service.busca("Joaquim Silva")).thenReturn(ProfessorConst.JOAQUIM_SILVA);
         Professor joaquimSilva = buscaProfessor.buscaProfessor("Joaquim Silva");
         assertEquals("Joaquim Silva", joaquimSilva.getNomeDoProfessor());
@@ -31,7 +31,7 @@ public class TesteBuscaProfessor {
     }
 
     @Test
-    public void buscaProfessorMarcosPereira() throws InvalidPersonNameException {
+    public void buscaProfessorMarcosPereira() {
         Mockito.when(service.busca("Marcos Pereira")).thenReturn(ProfessorConst.MARCOS_PEREIRA);
         Professor marcosPereira = buscaProfessor.buscaProfessor("Marcos Pereira");
         assertEquals("Marcos Pereira", marcosPereira.getNomeDoProfessor());
@@ -40,7 +40,7 @@ public class TesteBuscaProfessor {
     }
 
     @Test
-    public void buscaProfessorCarlosMagno() throws InvalidPersonNameException {
+    public void buscaProfessorCarlosMagno() {
         Mockito.when(service.busca("Carlos Magno")).thenReturn(ProfessorConst.CARLOS_MAGNO);
         Professor carlosMagno = buscaProfessor.buscaProfessor("Carlos Magno");
         assertEquals("Carlos Magno", carlosMagno.getNomeDoProfessor());
