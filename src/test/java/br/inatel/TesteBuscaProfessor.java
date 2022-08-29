@@ -47,6 +47,33 @@ public class TesteBuscaProfessor {
         assertEquals("Quinta das 10h às 11h40min", carlosMagno.getHorarioDeAtendimento());
         assertEquals("integral", carlosMagno.getPeriodo());
     }
+
+    @Test
+    public void buscaProfessorNaoCadastradoNoServidorRemoto() {
+        Mockito.when(service.busca("Júlio Cesar")).thenReturn(ProfessorConst.NAO_ENCONTRADO);
+        Professor júlioCesar = buscaProfessor.buscaProfessor("Júlio Cesar");
+        assertEquals("Não Encontrado", júlioCesar.getNomeDoProfessor());
+        assertEquals("Não Encontrado", júlioCesar.getHorarioDeAtendimento());
+        assertEquals("Não Encontrado", júlioCesar.getPeriodo());
+    }
+
+    @Test
+    public void buscaProfessorComNomeInvalido() {
+        Mockito.when(service.busca("12345")).thenReturn(ProfessorConst.NOME_INVALIDO);
+        Professor professorComNomeInvalido = buscaProfessor.buscaProfessor("12345");
+        assertEquals("Nome Inválido", professorComNomeInvalido.getNomeDoProfessor());
+        assertEquals("Nome Inválido", professorComNomeInvalido.getHorarioDeAtendimento());
+        assertEquals("Nome Inválido", professorComNomeInvalido.getPeriodo());
+    }
+
+    @Test
+    public void buscaProfessorComNomeVazio() {
+        Mockito.when(service.busca("")).thenReturn(ProfessorConst.NOME_VAZIO);
+        Professor professorComNomeVazio = buscaProfessor.buscaProfessor("");
+        assertEquals("Nome Vazio", professorComNomeVazio.getNomeDoProfessor());
+        assertEquals("Nome Vazio", professorComNomeVazio.getHorarioDeAtendimento());
+        assertEquals("Nome Vazio", professorComNomeVazio.getPeriodo());
+    }
 }
 
 class ProfessorConst {
@@ -64,4 +91,19 @@ class ProfessorConst {
             "{ \"nomeDoProfessor\": \"Carlos Magno\", \n " +
                     "\"horarioDeAtendimento\": \"Quinta das 10h às 11h40min\", \n " +
                     "\"periodo\": \"integral\" }";
+
+    public static String NAO_ENCONTRADO =
+            "{ \"nomeDoProfessor\": \"Não Encontrado\", \n " +
+                    "\"horarioDeAtendimento\": \"Não Encontrado\", \n " +
+                    "\"periodo\": \"Não Encontrado\" }";
+
+    public static String NOME_INVALIDO =
+            "{ \"nomeDoProfessor\": \"Nome Inválido\", \n " +
+                    "\"horarioDeAtendimento\": \"Nome Inválido\", \n " +
+                    "\"periodo\": \"Nome Inválido\" }";
+
+    public static String NOME_VAZIO =
+            "{ \"nomeDoProfessor\": \"Nome Vazio\", \n " +
+                    "\"horarioDeAtendimento\": \"Nome Vazio\", \n " +
+                    "\"periodo\": \"Nome Vazio\" }";
 }
