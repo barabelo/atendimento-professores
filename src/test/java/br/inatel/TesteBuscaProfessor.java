@@ -29,6 +29,24 @@ public class TesteBuscaProfessor {
         assertEquals("Quarta das 13h30min às 17h10min", joaquimSilva.getHorarioDeAtendimento());
         assertEquals("integral", joaquimSilva.getPeriodo());
     }
+
+    @Test
+    public void buscaProfessorMarcosPereira() throws InvalidPersonNameException {
+        Mockito.when(service.busca("Marcos Pereira")).thenReturn(ProfessorConst.MARCOS_PEREIRA);
+        Professor marcosPereira = buscaProfessor.buscaProfessor("Marcos Pereira");
+        assertEquals("Marcos Pereira", marcosPereira.getNomeDoProfessor());
+        assertEquals("Terça das 19h30min às 21h10min", marcosPereira.getHorarioDeAtendimento());
+        assertEquals("noturno", marcosPereira.getPeriodo());
+    }
+
+    @Test
+    public void buscaProfessorCarlosMagno() throws InvalidPersonNameException {
+        Mockito.when(service.busca("Carlos Magno")).thenReturn(ProfessorConst.CARLOS_MAGNO);
+        Professor carlosMagno = buscaProfessor.buscaProfessor("Carlos Magno");
+        assertEquals("Carlos Magno", carlosMagno.getNomeDoProfessor());
+        assertEquals("Quinta das 10h às 11h40min", carlosMagno.getHorarioDeAtendimento());
+        assertEquals("integral", carlosMagno.getPeriodo());
+    }
 }
 
 class ProfessorConst {
@@ -41,4 +59,9 @@ class ProfessorConst {
             "{ \"nomeDoProfessor\": \"Marcos Pereira\", \n " +
                     "\"horarioDeAtendimento\": \"Terça das 19h30min às 21h10min\", \n " +
                     "\"periodo\": \"noturno\" }";
+
+    public static String CARLOS_MAGNO =
+            "{ \"nomeDoProfessor\": \"Carlos Magno\", \n " +
+                    "\"horarioDeAtendimento\": \"Quinta das 10h às 11h40min\", \n " +
+                    "\"periodo\": \"integral\" }";
 }
